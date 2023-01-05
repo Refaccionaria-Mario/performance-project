@@ -43,15 +43,17 @@ echo "USER_COUNT: $USER_COUNT"
 echo "CUSTOMER_COUNT: $CUSTOMER_COUNT"
 echo "ADMIN_COUNT: $ADMIN_COUNT"
 echo "RAMP_DURATION: $RAMP_DURATION"
+mkdir -p "${dir}/results"
+touch "${dir}/results/gatling.log"
 
 # RUN SIMULATION
 
 export START="$(date +"%Y-%m-%d %T")"
 
 docker run -it --rm \
-    -v $dir/user-files:/opt/gatling/user-files \
-    -v $dir/conf:/opt/gatling/conf \
-    -v $dir/results:/opt/gatling/results \
+    -v "${dir}/user-files:/opt/gatling/user-files" \
+    -v "${dir}/conf:/opt/gatling/conf" \
+    -v "${dir}/results:/opt/gatling/results" \
     -e JAVA_OPTS="-DusersCount=$USER_COUNT
                   -DcustomersCount=$CUSTOMER_COUNT
                   -DadminsCount=$ADMIN_COUNT
@@ -62,7 +64,7 @@ docker run -it --rm \
                   -DadminPassword=prestashop" \
     denvazh/gatling:3.0.3 \
     -s LoadSimulation \
-    2>&1 | tee $dir/results/gatling.log
+    2>&1 | tee "${dir}/results/gatling.log"
 
 # following can be used as option above to properly redirect local host
 #--add-host=sandbox.prestashop.com:192.168.10.68 \

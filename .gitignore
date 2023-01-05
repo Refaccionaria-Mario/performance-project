@@ -1,3 +1,7 @@
 /shop/prestashop-shop-creator/
 /benchmark/gatling/results/
 /benchmark/gatling/gatling.log
+/benchmark/gatling/Projects/
+/benchmark/gatling/results/*
+
+!/benchmark/gatling/results/README.md

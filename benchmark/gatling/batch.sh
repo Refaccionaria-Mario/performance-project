@@ -4,7 +4,7 @@ set -e
 dir="$(cd "$(dirname "$0")"; pwd)"
 
 STACK="stack1"
-MAIN_SHOP_URL="http://shop2.$STACK.prestashop.net"
+MAIN_SHOP_URL="https://dev.refaccionariamario.com"
 BASE_COUNT="20"
 CUSTOMER_COUNT="0"
 ADMIN_COUNT="0"
